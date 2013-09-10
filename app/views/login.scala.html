@@ -1,0 +1,55 @@
+@main {
+
+    <script>
+        require(["dojo/parser", "dijit/form/Form", "dijit/form/Button", "dijit/form/ValidationTextBox"]);
+    </script>
+
+    <body class="claro">
+
+        <div style="margin: auto; width: 300px;">
+
+                <div data-dojo-type="dijit/form/Form" id="myForm" data-dojo-id="myForm" encType="multipart/form-data" action="" method="">
+
+                    <script type="dojo/on" data-dojo-event="reset">
+                        return confirm('Press OK to reset widget values');
+                    </script>
+
+                    <script type="dojo/on" data-dojo-event="submit">
+                        if(this.validate()){
+                            return confirm('Form is valid, press OK to submit');
+                        }else{
+                            alert('Form contains invalid data.  Please correct first');
+                            return false;
+                        }
+                        return true;
+                    </script>
+
+                    <table style="border: 1px solid #9f9f9f;">
+                        <tr>
+                            <td>
+                                <label for="name">Name:</label>
+                            </td>
+                            <td>
+                                <input type="text" id="name" name="name" required="true" data-dojo-type="dijit/form/ValidationTextBox"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="passwd">Password:</label>
+                            </td>
+                            <td>
+                                <input type="password" id="passwd" name="passwd" required="true" data-dojo-type="dijit/form/ValidationTextBox"/>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <button data-dojo-type="dijit/form/Button" type="submit" name="submitButton" value="Submit">Login</button>
+                    <button data-dojo-type="dijit/form/Button" type="reset">Reset</button>
+                </div>
+
+        </div>
+
+    </body>
+
+
+}

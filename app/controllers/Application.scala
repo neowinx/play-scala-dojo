@@ -4,9 +4,14 @@ import play.api._
 import play.api.mvc._
 
 object Application extends Controller {
+
+  var authenticated = false
   
   def index = Action {
-    Ok(views.html.index("Your new application is ready."))
+    if(!authenticated)
+      Ok(views.html.login())
+    else
+      Ok(views.html.index())
   }
   
 }
