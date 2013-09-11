@@ -1,9 +1,38 @@
 @(personas: Seq[Persona])
 
 @main {
-    @personas.map { persona =>
-      <h1>Id: @persona.id</h1>
-      <h1>Nombre: @persona.nombre</h1>
-      <h1>Ci: @persona.ci</h1>
-    }
+
+    <script>
+
+        var dataStore;
+
+        var dataList = [
+            @personas.map { persona =>
+                { id: @persona.ci, nombre: "@persona.nombre", ci: "@persona.ci" },
+            }
+        ];
+
+        require(["dojo/parser", "dojox/grid/DataGrid", "dojo/store/Memory", "dojo/data/ObjectStore", "dojo/domReady!"],
+            function(parser, DataGrid, Memory, ObjectStore, dom) {
+                dataStore = new ObjectStore(
+                    { objectStore : new Memory( { data: dataList } ) }
+                );
+            }
+        );
+
+    </script>
+
+    <body class="claro">
+
+        <table data-dojo-type="dojox/grid/DataGrid" data-dojo-props="store:dataStore">
+            <thead>
+                <tr>
+                    <th field="id" width="200px">Id</th>
+                    <th field="nombre" width="200px">Nombre</th>
+                    <th field="ci" width="200px">C.I.</th>
+                </tr>
+            </thead>
+        </table>
+
+    </body>
 }
