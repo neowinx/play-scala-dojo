@@ -1,0 +1,9 @@
+@(personas: Seq[Persona])
+
+@main {
+    @personas.map { persona =>
+      <h1>Id: @persona.id</h1>
+      <h1>Nombre: @persona.nombre</h1>
+      <h1>Ci: @persona.ci</h1>
+    }
+}
